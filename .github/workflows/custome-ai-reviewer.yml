@@ -1,0 +1,26 @@
+---
+name: custom-ai-review
+
+on:
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    ai_review_job:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Gemini Code Review
+              env:
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+                  GEMINI_API_KEY: ${{secrets.GEMINI_API_KEY}}
+              run: |
+                echo "✅ Repository code downloaded successfully!"
+                echo "✅ Secure connection established."
+                echo "✅ Vault accessed. The Gemini API Key is loaded and hidden in the logs."
+                echo "If this were a real Python script, we would pass the code diff to the LLM right here!"
