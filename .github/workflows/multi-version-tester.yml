@@ -1,0 +1,26 @@
+---
+name: multi version Tester (Advance Concepts)
+
+on: [push]
+
+jobs:
+    test_environment:
+        strategy:
+            matrix: 
+                os: [ubuntu-latest,macos-latest,windows-latest]
+                 
+        runs-on: ${{matrix.os}}
+
+        steps:
+            - name: Run on differnet Versions
+              run : echo "running on ${{matrix.os}}"
+        
+    success_notification:
+        runs-on: ubuntu-latest
+        needs: test_environment
+        if: success()
+
+        steps: 
+            - name: Success Notification
+              run : echo "the code executed on three different Operating Systems."
+

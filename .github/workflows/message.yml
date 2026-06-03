@@ -1,0 +1,10 @@
+name: The Messenger Pipeline
+
+on: [push]
+
+jobs:
+  print_message_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print in Console
+        run: echo "this is my first WorkFlow to practice in CI/CD."
