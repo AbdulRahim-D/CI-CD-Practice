@@ -1,0 +1,15 @@
+name: Security Vault Testing
+
+on: [push]
+
+jobs:
+  test_secret_key:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test secret key
+        env:
+          MY_SECRET: ${{secrets.MY_TEST_SECRET}}
+        run: |
+          echo "Testing vault seurity..."
+          echo "The secert value is:$MY_SECRET"
+          echo "if the vault is working the above line will hide the secret key..."
